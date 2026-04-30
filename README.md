@@ -19,7 +19,7 @@ $$x_3 = \frac{x_1 \cdot f(x_2) - x_2 \cdot f(x_1)}{f(x_2) - f(x_1)}$$
 .Kriteria Berhenti: Iterasi berhenti jika $|f(x_3)| < \text{Toleransi Error}$.  
 
 ## 3. Implementasi Kode (C++)
-```
+``` cpp
 // Bagian inti algoritma Regula Falsi dalam program:
 for (int i = 1; i <= max_iter; i++) {
     // Menghitung x3 berdasarkan kemiringan garis antara dua titik
