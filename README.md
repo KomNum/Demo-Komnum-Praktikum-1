@@ -2,7 +2,7 @@
 |    NRP     |           Nama             |
 | :--------: |       :------------:       |
 | 5025251218 | Mushallina Dzikri Rozana   |
-| xxxxxxxxxx | xxxxxxx                    |
+| 5025251228 | Raden Roro Fabronita Sectia Farela                    |
 
 # Laporan Praktikum Komputasi Numerik - 1
 ## 1. Pendahuluan & Penjelasan Soal
@@ -49,3 +49,148 @@ Input: $x_1 = 0, x_2 = 1, \text{Error} = 0.00001$.
 Visualisasi Grafik: Grafik terminal menunjukkan kurva memotong sumbu Y=0 (garis |) di antara nilai $0.4$ dan $0.6$. Hal ini memberikan validasi visual awal sebelum perhitungan dilakukan.  Hasil Perhitungan: Akar ditemukan pada 0.495007 dalam 4 iterasi. 
 
 Kesimpulan: Metode Regula Falsi terbukti sangat efisien untuk fungsi ini karena hanya memerlukan sedikit iterasi untuk mencapai presisi tinggi dibandingkan metode Bagi Dua (Bisection).  
+
+
+
+
+
+
+# Laporan Praktikum Komputasi Numerik - #1
+
+## 1. Pendahuluan
+
+Pada materi Komputasi Numerik Pertemuan III, dibahas metode pencarian akar persamaan menggunakan Metode Terbuka, yaitu metode numerik yang tidak memerlukan interval pembatas akar seperti metode akolade. Nilai awal iterasi pada metode terbuka biasanya berupa satu atau dua tebakan awal, kemudian nilai tersebut diperbaiki terus-menerus hingga mendekati akar sebenarnya.
+
+Berbeda dengan metode tertutup, metode terbuka memiliki kemungkinan:
+
+Konvergen, yaitu hasil iterasi semakin mendekati akar sebenarnya
+Divergen, yaitu hasil iterasi justru menjauh dari akar sebenarnya
+
+Salah satu metode terbuka yang cukup populer adalah Metode Secant.
+
+Metode Secant digunakan untuk mencari akar persamaan non-linier tanpa menggunakan turunan fungsi, sehingga menjadi alternatif dari metode Newton-Raphson yang membutuhkan turunan pertama.
+
+## 2. Dasar Teori Metode Secant
+
+Menurut materi perkuliahan, kelemahan metode Newton-Raphson adalah perlunya turunan fungsi yang kadang sulit dicari. Oleh karena itu, metode Secant menawarkan pendekatan lain, yaitu menggunakan beda hingga untuk mendekati gradien garis singgung.
+
+Jika diketahui dua tebakan awal:
+
+- \( x_{i-1} \)
+- \( x_i \)
+
+Maka akar berikutnya dihitung dengan rumus:
+
+\[
+x_{i+1} = x_i - \frac{f(x_i)(x_{i-1} - x_i)}{f(x_{i-1}) - f(x_i)}
+\]
+
+Rumus di atas berasal dari persamaan garis secant yang menghubungkan dua titik:
+
+- \( (x_{i-1}, f(x_{i-1})) \)
+- \( (x_i, f(x_i)) \)
+
+Lalu dicari titik potong garis tersebut terhadap sumbu-X.
+
+## 3. Kelebihan Metode Secant
+
+Berdasarkan materi PPT, metode **Secant** memiliki beberapa kelebihan:
+
+- Tidak memerlukan turunan fungsi
+- Lebih cepat dibanding metode Bisection jika konvergen
+- Cocok untuk fungsi kompleks
+- Iterasi relatif sedikit jika tebakan awal baik
+
+---
+
+## 4. Algoritma Program
+
+Langkah program yang dibuat:
+
+1. User memasukkan fungsi `f(x)`
+2. User memasukkan dua tebakan awal `x0` dan `x1`
+3. User memasukkan toleransi error
+4. User memasukkan maksimum iterasi
+5. Program menghitung akar baru `x2` dengan rumus Secant:
+
+\[
+x_2 = x_1 - \frac{f(x_1)(x_1 - x_0)}{f(x_1)-f(x_0)}
+\]
+
+6. Menghitung error:
+
+\[
+Error = |x_2 - x_1|
+\]
+
+7. Jika error lebih kecil dari toleransi, iterasi berhenti
+8. Jika belum, proses diulangi
+
+---
+
+## 5. Implementasi Program Python
+
+```python
+import math
+
+print("====================================")
+print("     KALKULATOR METODE SECANT")
+print("====================================")
+
+# Input data dari user
+# Contoh fungsi:
+# x**3 - x - 2
+# math.exp(-x) - x
+# math.sin(x) - 5*x + 2
+
+fungsi = input("Masukkan fungsi f(x): ")
+
+# Dua tebakan awal
+x0 = float(input("Masukkan x0: "))
+x1 = float(input("Masukkan x1: "))
+
+# Toleransi error
+tol = float(input("Masukkan toleransi: "))
+
+# Maksimum iterasi
+maks = int(input("Masukkan maksimum iterasi: "))
+
+def f(x):
+    return eval(fungsi)
+
+print("\n-------------------------------------------------------------")
+print("{:<5} {:<12} {:<12} {:<12} {:<12}".format(
+    "Iter", "x0", "x1", "x2", "Error"))
+print("-------------------------------------------------------------")
+
+# Iterasi metode Secant
+
+for i in range(1, maks + 1):
+
+    fx0 = f(x0)
+    fx1 = f(x1)
+
+    # Cek pembagi nol
+    if (fx1 - fx0) == 0:
+        print("Pembagi nol!")
+        break
+
+    # Rumus Secant
+    x2 = x1 - (fx1 * (x1 - x0)) / (fx1 - fx0)
+
+    # Hitung error
+    error = abs(x2 - x1)
+
+    # Tampilkan iterasi
+    print("{:<5} {:<12.6f} {:<12.6f} {:<12.6f} {:<12.6f}".format(
+        i, x0, x1, x2, error))
+
+    # Jika konvergen
+    if error < tol:
+        print("\nAkar ditemukan =", round(x2, 6))
+        break
+
+    # Update nilai
+    x0 = x1
+    x1 = x2
+
