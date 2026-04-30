@@ -76,21 +76,23 @@ Menurut materi perkuliahan, kelemahan metode Newton-Raphson adalah perlunya turu
 
 Jika diketahui dua tebakan awal:
 
-- \( x_{i-1} \)
-- \( x_i \)
+- $x_{i-1}$
+- $x_i$
 
 Maka akar berikutnya dihitung dengan rumus:
 
-\[
+$$
 x_{i+1} = x_i - \frac{f(x_i)(x_{i-1} - x_i)}{f(x_{i-1}) - f(x_i)}
-\]
+$$
 
 Rumus di atas berasal dari persamaan garis secant yang menghubungkan dua titik:
 
-- \( (x_{i-1}, f(x_{i-1})) \)
-- \( (x_i, f(x_i)) \)
+- $(x_{i-1}, f(x_{i-1}))$
+- $(x_i, f(x_i))$
 
 Lalu dicari titik potong garis tersebut terhadap sumbu-X.
+
+---
 
 ## 3. Kelebihan Metode Secant
 
@@ -113,19 +115,18 @@ Langkah program yang dibuat:
 4. User memasukkan maksimum iterasi
 5. Program menghitung akar baru `x2` dengan rumus Secant:
 
-\[
+$$
 x_2 = x_1 - \frac{f(x_1)(x_1 - x_0)}{f(x_1)-f(x_0)}
-\]
+$$
 
 6. Menghitung error:
 
-\[
+$$
 Error = |x_2 - x_1|
-\]
+$$
 
-7. Jika error lebih kecil dari toleransi, iterasi berhenti
+7. Jika error lebih kecil dari toleransi, iterasi berhenti  
 8. Jika belum, proses diulangi
-
 ---
 
 ## 5. Implementasi Program Python
