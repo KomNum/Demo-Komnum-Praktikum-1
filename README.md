@@ -18,17 +18,14 @@ $$f(x) = \sin(x) - 5x + 2$$
 Langkah-langkah yang diimplementasikan dalam kode program adalah:
 
 
-.Syarat Bolzano: Memastikan bahwa $f(x_1) \cdot f(x_2) < 0$, yang artinya terdapat perubahan tanda sehingga dipastikan ada akar di antara rentang tersebut. 
-
-
-.Rumus Regula Falsi: Menghitung nilai $x_3$ menggunakan interpolasi linier:
+Rumus Regula Falsi: Menghitung nilai $x_3$ menggunakan interpolasi linier:
 $$x_3 = \frac{x_1 \cdot f(x_2) - x_2 \cdot f(x_1)}{f(x_2) - f(x_1)}$$  
 
 
-.Update Interval: Mengevaluasi $f(x_3)$. Jika $f(x_1) \cdot f(x_3) < 0$, maka $x_2$ digantikan oleh $x_3$. Jika tidak, maka $x_1$ yang digantikan. 
+Update Interval: Mengevaluasi $f(x_3)$. Jika $f(x_1) \cdot f(x_3) < 0$, maka $x_2$ digantikan oleh $x_3$. Jika tidak, maka $x_1$ yang digantikan. 
 
 
-.Kriteria Berhenti: Iterasi berhenti jika $|f(x_3)| < \text{Toleransi Error}$.  
+Kriteria Berhenti: Iterasi berhenti jika $|f(x_3)| < \text{Toleransi Error}$.  
 
 ## 3. Implementasi Kode (C++)
 
