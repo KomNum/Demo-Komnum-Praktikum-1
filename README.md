@@ -107,7 +107,7 @@ int main() {
     cout << "Masukkan Toleransi Error: "; cin >> error_tol;
     cout << "Masukkan Max Iterasi: "; cin >> max_iter;
 
-    // Syarat Bolzano[cite: 1]
+    
     if (f(x1, pilihan) * f(x2, pilihan) >= 0) {
         cout << "\n[ERROR] f(x1) dan f(x2) tanda sama! Tidak ada akar." << endl;
         return 0;
@@ -119,7 +119,7 @@ int main() {
     cout << "----------------------------------------------------------------------------" << endl;
 
     for (int i = 1; i <= max_iter; i++) {
-        // Rumus Regula Falsi[cite: 1]
+        // Rumus Regula Falsi
         x3 = (x1 * f(x2, pilihan) - x2 * f(x1, pilihan)) / (f(x2, pilihan) - f(x1, pilihan));
 
         double fx3 = f(x3, pilihan);
@@ -131,7 +131,6 @@ int main() {
             break;
         }
 
-        // Update Interval[cite: 1]
         if (f(x1, pilihan) * fx3 < 0) x2 = x3;
         else x1 = x3;
     }
