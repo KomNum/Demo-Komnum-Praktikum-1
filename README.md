@@ -6,7 +6,7 @@
 
 # Laporan Praktikum Komputasi Numerik - 1
 ## 1. Pendahuluan & Penjelasan Soal
-   Metode Regula Falsi (Metode Posisi Salah) adalah salah satu metode tertutup (akolade) yang digunakan untuk mencari akar-akar persamaan non-linier. MMetode ini menarik sebuah garis lurus (tali busur) yang menghubungkan dua titik pada kurva, yaitu $(x_1, f(x_1))$ dan $(x_2, f(x_2))$. Titik di mana garis lurus tersebut memotong sumbu-X didefinisikan sebagai estimasi akar baru, yang kita sebut sebagai $x_3$. Pendekatan ini didasarkan pada asumsi bahwa fungsi berperilaku linear pada interval yang sangat kecil, sehingga titik potong garis lurus akan lebih cepat mendekati akar yang sebenarnya (titik $a$) dibandingkan sekadar membagi dua interval..  Pada laporan ini, fokus utama adalah menyelesaikan persamaan:
+   Metode Regula Falsi (Metode Posisi Salah) adalah salah satu metode tertutup (akolade) yang digunakan untuk mencari akar-akar persamaan non-linier. Metode ini menarik sebuah garis lurus (tali busur) yang menghubungkan dua titik pada kurva, yaitu $(x_1, f(x_1))$ dan $(x_2, f(x_2))$. Titik di mana garis lurus tersebut memotong sumbu-X didefinisikan sebagai estimasi akar baru, yang kita sebut sebagai $x_3$. Pendekatan ini didasarkan pada asumsi bahwa fungsi berperilaku linear pada interval yang sangat kecil, sehingga titik potong garis lurus akan lebih cepat mendekati akar yang sebenarnya (titik $a$) dibandingkan sekadar membagi dua interval..  Pada laporan ini, fokus utama adalah menyelesaikan persamaan:
 
    
 $$f(x) = \sin(x) - 5x + 2$$
