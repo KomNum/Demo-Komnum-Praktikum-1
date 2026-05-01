@@ -93,8 +93,8 @@ int main() {
     cout << "====================================================" << endl;
     cout << "Pilih Fungsi yang ingin dikerjakan:" << endl;
     cout << "1. f(x) = e^-x - x" << endl;
-    cout << "2. f(x) = x^3 + x^2 - 3x - 3 (Slide 16)" << endl;
-    cout << "3. f(x) = sin(x) - 5x + 2     (Slide 22)" << endl;
+    cout << "2. f(x) = x^3 + x^2 - 3x - 3 " << endl;
+    cout << "3. f(x) = sin(x) - 5x + 2   " << endl;
     cout << "Pilihan Anda (1-3): "; cin >> pilihan;
 
     if (pilihan < 1 || pilihan > 3) {
