@@ -19,6 +19,8 @@ Langkah-langkah yang diimplementasikan dalam kode program adalah:
 
 
 Rumus Regula Falsi: Menghitung nilai $x_3$ menggunakan interpolasi linier:
+
+
 $$x_3 = \frac{x_1 \cdot f(x_2) - x_2 \cdot f(x_1)}{f(x_2) - f(x_1)}$$  
 
 
