@@ -28,7 +28,27 @@ Update Interval: Mengevaluasi $f(x_3)$. Jika $f(x_1) \cdot f(x_3) < 0$, maka $x_
 Kriteria Berhenti: Iterasi berhenti jika $|f(x_3)| < \text{Toleransi Error}$.  
 
 ## 3. Implementasi Kode (C++)
+``` cpp
+// Bagian inti algoritma Regula Falsi dalam program:
+for (int i = 1; i <= max_iter; i++) {
+    // Menghitung x3 berdasarkan kemiringan garis antara dua titik
+    x3 = (x1 * f(x2, pilihan) - x2 * f(x1, pilihan)) / (f(x2, pilihan) - f(x1, pilihan));
 
+    double fx3 = f(x3, pilihan);
+    // Menampilkan progres setiap langkah perhitungan
+    cout << setw(5) << i << fixed << setprecision(6) << setw(12) << x1 
+         << setw(12) << x2 << setw(12) << x3 << setw(15) << fx3 << endl;
+
+    if (abs(fx3) < error_tol) {
+        cout << "AKAR DITEMUKAN: " << x3 << " pada iterasi ke-" << i << endl;
+        break;
+    }
+
+    // Pemilihan sub-interval baru berdasarkan teorema antara
+    if (f(x1, pilihan) * fx3 < 0) x2 = x3;
+    else x1 = x3;
+}
+```
 code full
 ``` cpp
 #include <iostream>
@@ -119,27 +139,7 @@ int main() {
 
 ```
 
-``` cpp
-// Bagian inti algoritma Regula Falsi dalam program:
-for (int i = 1; i <= max_iter; i++) {
-    // Menghitung x3 berdasarkan kemiringan garis antara dua titik
-    x3 = (x1 * f(x2, pilihan) - x2 * f(x1, pilihan)) / (f(x2, pilihan) - f(x1, pilihan));
 
-    double fx3 = f(x3, pilihan);
-    // Menampilkan progres setiap langkah perhitungan
-    cout << setw(5) << i << fixed << setprecision(6) << setw(12) << x1 
-         << setw(12) << x2 << setw(12) << x3 << setw(15) << fx3 << endl;
-
-    if (abs(fx3) < error_tol) {
-        cout << "AKAR DITEMUKAN: " << x3 << " pada iterasi ke-" << i << endl;
-        break;
-    }
-
-    // Pemilihan sub-interval baru berdasarkan teorema antara
-    if (f(x1, pilihan) * fx3 < 0) x2 = x3;
-    else x1 = x3;
-}
-```
 
 ## 4. Analisis Output & Grafik
 Berdasarkan hasil eksekusi program untuk Case 3:
