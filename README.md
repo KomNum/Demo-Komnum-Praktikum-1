@@ -31,6 +31,97 @@ $$x_3 = \frac{x_1 \cdot f(x_2) - x_2 \cdot f(x_1)}{f(x_2) - f(x_1)}$$
 .Kriteria Berhenti: Iterasi berhenti jika $|f(x_3)| < \text{Toleransi Error}$.  
 
 ## 3. Implementasi Kode (C++)
+
+code full
+``` cpp
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+// Fungsi Matematika Global dengan Parameter Pilihan
+double f(double x, int pil) {
+    switch(pil) {
+        case 1: return exp(-x) - x;                   
+        case 2: return pow(x, 3) + pow(x, 2) - 3*x - 3; 
+        case 3: return sin(x) - (5 * x) + 2;          
+        default: return 0;
+    }
+}
+
+void gambarGrafik(double x1, double x2, int pil) {
+    cout << "\n=== VISUALISASI GRAFIK f(x) ===" << endl;
+    for (double i = x1 - 0.5; i <= x2 + 0.5; i += 0.1) {
+        double val = f(i, pil);
+        int posisi = (int)(val * 20) + 30;
+        cout << fixed << setprecision(1) << setw(4) << i << " ";
+        for (int j = 0; j < 60; j++) {
+            if (j == 30) cout << "|";
+            else if (j == posisi) cout << "*";
+            else cout << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    double x1, x2, x3, error_tol;
+    int max_iter, pilihan;
+
+    cout << "====================================================" << endl;
+    cout << "    PROGRAM REGULA FALSI - MULTI FUNGSI             " << endl;
+    cout << "====================================================" << endl;
+    cout << "Pilih Fungsi yang ingin dikerjakan:" << endl;
+    cout << "1. f(x) = e^-x - x" << endl;
+    cout << "2. f(x) = x^3 + x^2 - 3x - 3 (Slide 16)" << endl;
+    cout << "3. f(x) = sin(x) - 5x + 2     (Slide 22)" << endl;
+    cout << "Pilihan Anda (1-3): "; cin >> pilihan;
+
+    if (pilihan < 1 || pilihan > 3) {
+        cout << "Pilihan tidak valid!" << endl;
+        return 0;
+    }
+
+    cout << "\nMasukkan x1: "; cin >> x1;
+    cout << "Masukkan x2: "; cin >> x2;
+    cout << "Masukkan Toleransi Error: "; cin >> error_tol;
+    cout << "Masukkan Max Iterasi: "; cin >> max_iter;
+
+    // Syarat Bolzano[cite: 1]
+    if (f(x1, pilihan) * f(x2, pilihan) >= 0) {
+        cout << "\n[ERROR] f(x1) dan f(x2) tanda sama! Tidak ada akar." << endl;
+        return 0;
+    }
+
+    gambarGrafik(x1, x2, pilihan);
+
+    cout << "\n" << setw(5) << "Iter" << setw(12) << "x1" << setw(12) << "x2" << setw(12) << "x3" << setw(15) << "f(x3)" << endl;
+    cout << "----------------------------------------------------------------------------" << endl;
+
+    for (int i = 1; i <= max_iter; i++) {
+        // Rumus Regula Falsi[cite: 1]
+        x3 = (x1 * f(x2, pilihan) - x2 * f(x1, pilihan)) / (f(x2, pilihan) - f(x1, pilihan));
+
+        double fx3 = f(x3, pilihan);
+        cout << setw(5) << i << fixed << setprecision(6) << setw(12) << x1 << setw(12) << x2 << setw(12) << x3 << setw(15) << fx3 << endl;
+
+        if (abs(fx3) < error_tol) {
+            cout << "----------------------------------------------------------------------------" << endl;
+            cout << "AKAR DITEMUKAN: " << x3 << " pada iterasi ke-" << i << endl;
+            break;
+        }
+
+        // Update Interval[cite: 1]
+        if (f(x1, pilihan) * fx3 < 0) x2 = x3;
+        else x1 = x3;
+    }
+
+    return 0;
+}
+
+```
+
 ``` cpp
 // Bagian inti algoritma Regula Falsi dalam program:
 for (int i = 1; i <= max_iter; i++) {
